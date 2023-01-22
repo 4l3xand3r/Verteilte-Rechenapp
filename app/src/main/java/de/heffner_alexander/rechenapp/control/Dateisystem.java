@@ -1,6 +1,5 @@
-package de.heffner_alexander.rechenapp.classes;
+package de.heffner_alexander.rechenapp.control;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;

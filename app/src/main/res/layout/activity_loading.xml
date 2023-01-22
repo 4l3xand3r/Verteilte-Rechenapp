@@ -19,19 +19,6 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <TextView
-        android:id="@+id/loading_percentage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0%"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/loading_progress"
-        app:layout_constraintEnd_toEndOf="@+id/loading_progress"
-        app:layout_constraintStart_toStartOf="@+id/loading_progress"
-        app:layout_constraintTop_toTopOf="@+id/loading_progress" />
-
-    <TextView
         android:id="@+id/loading_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

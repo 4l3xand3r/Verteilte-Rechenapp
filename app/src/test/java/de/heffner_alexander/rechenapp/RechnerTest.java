@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.heffner_alexander.rechenapp.classes.Rechner;
+import de.heffner_alexander.rechenapp.control.Rechner;
 
 public class RechnerTest {
 

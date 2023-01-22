@@ -1,4 +1,4 @@
-package de.heffner_alexander.rechenapp.classes;
+package de.heffner_alexander.rechenapp.control;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,10 +11,10 @@ public class Rechner implements IFormelRechner {
     private final List<Pair<Double, Double>> data = new LinkedList<>();
 
     @Override
-    public boolean calculateFunction(String formula, int start, int end, double stepSize) {
+    public boolean calculateFunction(String formula, double start, double end, double stepSize) {
         try {
             double dFirstNumber = 0;
-            double dSecondNumber = 0;
+            double dSecondNumber;
             boolean bFirstNumberSet = false;
             String sOperation = "";
 
@@ -112,6 +112,7 @@ public class Rechner implements IFormelRechner {
                         return false;
                 }
                 data.add(new Pair<>(i, dFirstNumber));
+                dFirstNumber = 0;
             }
 
             return true;

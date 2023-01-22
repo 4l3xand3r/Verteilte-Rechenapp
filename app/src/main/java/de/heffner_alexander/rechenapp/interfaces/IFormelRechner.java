@@ -6,7 +6,7 @@ import kotlin.Pair;
 
 public interface IFormelRechner {
 
-    boolean calculateFunction(String formula, int start, int end, double stepSize);
+    boolean calculateFunction(String formula, double start, double end, double stepSize);
     List<Pair<Double, Double>> fetchDataSet();
 
 }
