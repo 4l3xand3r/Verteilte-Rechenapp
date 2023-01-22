@@ -19,11 +19,15 @@ public class MainActivity extends AppCompatActivity {
     public static Context mainContext;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        mainContext = this;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mainContext = this;
 
         Button serverButton = findViewById(R.id.server_button);
         Button connectButton = findViewById(R.id.connect_button);

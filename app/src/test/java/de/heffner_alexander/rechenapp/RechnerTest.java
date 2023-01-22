@@ -36,7 +36,23 @@ public class RechnerTest {
 
         double data = rechner.fetchDataSet().get(0).component2();
 
-        assertEquals(data, 3.0, 0.0);
+        assertEquals(3.0, data, 0.0);
+    }
+
+    @Test
+    public void dataCorrectTwo() {
+        Rechner rechner = new Rechner();
+
+        rechner.calculateFunction(
+                "1+x^2",
+                2,
+                2,
+                1
+        );
+
+        double data = rechner.fetchDataSet().get(0).component2();
+
+        assertEquals(5.0, data, 0.0);
     }
 
 }

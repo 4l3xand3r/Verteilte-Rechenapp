@@ -36,6 +36,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'org.json:json:20180813'
 
     implementation files('libs/ASAPJava_0.7.2.jar')
     implementation files('libs/ASAPHub_0.1.0.jar')

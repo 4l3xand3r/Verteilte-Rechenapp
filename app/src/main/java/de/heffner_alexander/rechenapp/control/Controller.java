@@ -1,5 +1,6 @@
 package de.heffner_alexander.rechenapp.control;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 
 import java.util.LinkedList;
@@ -7,13 +8,15 @@ import java.util.List;
 
 import de.heffner_alexander.rechenapp.LoadingActivity;
 import de.heffner_alexander.rechenapp.MainActivity;
+import de.heffner_alexander.rechenapp.ResultsActivity;
 import kotlin.Pair;
 
 public class Controller {
 
     private static final Server server = new Server();
     private static final Client client = new Client();
-    private static final Dateisystem dateisystem = new Dateisystem();
+    @SuppressLint("StaticFieldLeak")
+    private static final Dateisystem dateisystem = new Dateisystem(ResultsActivity.resultContext);
     private static final GUI gui = new GUI();
     private static final Rechner rechner = new Rechner();
 

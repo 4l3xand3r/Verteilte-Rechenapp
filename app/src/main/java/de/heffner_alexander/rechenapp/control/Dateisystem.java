@@ -1,5 +1,7 @@
 package de.heffner_alexander.rechenapp.control;
 
+import android.content.Context;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,6 +17,13 @@ import de.heffner_alexander.rechenapp.interfaces.IDateiManager;
 import kotlin.Pair;
 
 public class Dateisystem implements IDateiManager {
+
+    private final Context context;
+
+    public Dateisystem(Context context) {
+        this.context = context;
+    }
+
     @Override
     public boolean saveResultsToFile(List<Pair<Double, Double>> results) {
         JSONObject jsonObject = new JSONObject();
@@ -25,7 +34,7 @@ public class Dateisystem implements IDateiManager {
             }
 
             FileOutputStream fos = new FileOutputStream(
-                    ResultsActivity.resultContext.getDataDir().getAbsolutePath()
+                    context.getDataDir().getAbsolutePath()
                     + "/" + LocalDateTime.now().toString() + ".json"
             );
 
