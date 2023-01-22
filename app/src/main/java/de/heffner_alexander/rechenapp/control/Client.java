@@ -64,9 +64,7 @@ public class Client implements IClientConn, ASAPEnvironmentChangesListener, ASAP
                     ASAPSerialization.writeCharSequenceParameter(device, bos);
                     ASAPSerialization.writeCharSequenceParameter(builder.toString(), bos);
                     peer.sendOnlineASAPMessage(appFormat, uri, bos.toByteArray());
-                    Controller.showResults();
-                    Controller.returnToStart();
-                    return true;
+                    successful = true;
                 } catch (IOException | ASAPException e) {
                     e.printStackTrace();
                     return false;
@@ -106,7 +104,6 @@ public class Client implements IClientConn, ASAPEnvironmentChangesListener, ASAP
 
                     if (message.startsWith(this.peer.getPeerID().toString())) {
                         String instructions = message.replaceFirst(this.peer.getPeerID().toString(), "");
-                        Controller.jumpToLoading();
                         Controller.startCalculations(instructions);
                     }
                 } catch (ASAPException e) {
