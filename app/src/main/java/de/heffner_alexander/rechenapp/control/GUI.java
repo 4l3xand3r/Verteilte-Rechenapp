@@ -43,6 +43,7 @@ public class GUI implements IGUIController {
 
     @Override
     public void backToBeginning() {
+        ResultsActivity.DATA.clear();
         Intent mainActivityIntent = new Intent(ResultsActivity.resultContext, MainActivity.class);
         mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         ResultsActivity.resultContext.startActivity(mainActivityIntent);
