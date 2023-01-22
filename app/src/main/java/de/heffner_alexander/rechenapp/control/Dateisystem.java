@@ -1,20 +1,42 @@
 package de.heffner_alexander.rechenapp.control;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import de.heffner_alexander.rechenapp.ResultsActivity;
 import de.heffner_alexander.rechenapp.interfaces.IDateiManager;
+import kotlin.Pair;
 
 public class Dateisystem implements IDateiManager {
     @Override
-    public File saveResultsToFile(List<Double> results) {
+    public boolean saveResultsToFile(List<Pair<Double, Double>> results) {
         JSONObject jsonObject = new JSONObject();
-        for (double value : results) {
 
+        try {
+            for (Pair<Double, Double> value : results) {
+                jsonObject.put(String.valueOf(value.component1()), value.component2());
+            }
+
+            FileOutputStream fos = new FileOutputStream(
+                    ResultsActivity.resultContext.getDataDir().getAbsolutePath()
+                    + "/" + LocalDateTime.now().toString() + ".json"
+            );
+
+            fos.write(jsonObject.toString().getBytes());
+            fos.flush();
+            fos.close();
+
+            return true;
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+            return false;
         }
-
-        return null;
     }
 }

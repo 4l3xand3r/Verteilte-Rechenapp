@@ -27,6 +27,7 @@ public class StartCalculationListener implements View.OnClickListener {
                 (!end.getText().toString().isEmpty())
         ) {
             Controller.jumpToLoading();
+
             Controller.sendCalculations(
                     formula.getText().toString(),
                     Double.parseDouble(start.getText().toString()),

@@ -31,6 +31,10 @@ public class Controller {
         gui.showLoadingScreen();
     }
 
+    public static void returnToStart() {
+        gui.backToBeginning();
+    }
+
     public static void sendCalculations(String formula, double start, double end, double stepSize) {
         server.sendDataToClients(formula, start, end, stepSize);
     }
@@ -49,6 +53,10 @@ public class Controller {
 
     public static void storeReceivedDataInMem(List<Pair<Double, Double>> data) {
         allData.addAll(data);
+    }
+
+    public static void saveDataInJSON() {
+        dateisystem.saveResultsToFile(allData);
     }
 
     public static List<Pair<Double, Double>> getResults() {

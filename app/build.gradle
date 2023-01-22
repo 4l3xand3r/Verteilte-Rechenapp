@@ -41,4 +41,6 @@ dependencies {
     implementation files('libs/ASAPHub_0.1.0.jar')
     implementation files('libs/SharkPeer_0.1.0.jar')
     implementation files('libs/SharkPKI_0.0.1.jar')
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
