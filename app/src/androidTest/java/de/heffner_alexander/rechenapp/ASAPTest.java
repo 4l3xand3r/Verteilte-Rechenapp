@@ -2,6 +2,7 @@ package de.heffner_alexander.rechenapp;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import androidx.test.core.app.ActivityScenario;
 
@@ -9,9 +10,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.Collections;
+
 import de.heffner_alexander.rechenapp.control.Client;
 import de.heffner_alexander.rechenapp.control.Controller;
 import de.heffner_alexander.rechenapp.control.Server;
+import kotlin.Pair;
 
 @RunWith(JUnit4.class)
 public class ASAPTest {
@@ -60,11 +64,33 @@ public class ASAPTest {
                 1.0
         );
 
-        client.sendDataToServer(Controller.getResults());
-
         System.out.println(Controller.getResults().size());
 
-        assertEquals(2, Controller.getResults().size(), 0.0);
+        assertEquals(1, Controller.getResults().size(), 0.0);
+
+        activity.close();
+        loadingActivity.close();
+        resultsActivity.close();
+    }
+
+    @Test
+    public void serverSendTrueTest() {
+        ActivityScenario<MainActivity> activity = ActivityScenario.launch(MainActivity.class);
+        ActivityScenario<LoadingActivity> loadingActivity = ActivityScenario.launch(LoadingActivity.class);
+        ActivityScenario<ResultsActivity> resultsActivity = ActivityScenario.launch(ResultsActivity.class);
+
+        Server server = new Server();
+        Client client = new Client();
+
+        server.initializeASAP();
+        client.initializeASAP();
+
+        assertTrue(server.sendDataToClients(
+                "1+x",
+                1.0,
+                1.0,
+                1.0
+        ));
 
         activity.close();
         loadingActivity.close();
