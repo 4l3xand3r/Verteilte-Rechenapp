@@ -33,7 +33,6 @@ public class ResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_results);
         resultContext = this;
 
-
         Button saveResultsButton = findViewById(R.id.save_button);
         Button returnButton = findViewById(R.id.back_button);
 

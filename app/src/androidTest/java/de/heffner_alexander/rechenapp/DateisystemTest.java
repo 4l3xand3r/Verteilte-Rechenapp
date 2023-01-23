@@ -19,7 +19,8 @@ public class DateisystemTest {
 
     @Test
     public void generateFileTest() {
-        Dateisystem dateisystem = new Dateisystem(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        Dateisystem dateisystem = new Dateisystem();
+        Dateisystem.context = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         List<Pair<Double, Double>> test = new LinkedList<>();
 
