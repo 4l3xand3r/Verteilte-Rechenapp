@@ -39,8 +39,6 @@ public class Client implements IClientConn, ASAPEnvironmentChangesListener, ASAP
             );
             peer.addASAPEnvironmentChangesListener(this);
             peer.addASAPMessageReceivedListener(appFormat, this);
-            GUI.toast.setText("Client initialisiert und auf peer vorbereitet.");
-            GUI.toast.show();
         } catch (IOException | ASAPException e) {
             e.printStackTrace();
         }

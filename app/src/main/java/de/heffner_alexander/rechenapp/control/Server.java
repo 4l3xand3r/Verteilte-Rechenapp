@@ -41,8 +41,6 @@ public class Server implements IServerHost, ASAPEnvironmentChangesListener, ASAP
             peer.addASAPEnvironmentChangesListener(this);
             peer.addASAPMessageReceivedListener(appFormat, this);
             devices.add(peer.getPeerID());
-            GUI.toast.setText("Server initialisiert und auf peer vorbereitet.");
-            GUI.toast.show();
         } catch (IOException | ASAPException e) {
             e.printStackTrace();
         }

@@ -8,6 +8,8 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertNotNull;
 
+import android.os.Looper;
+
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.intent.Intents;
@@ -49,6 +51,7 @@ public class GUITest {
 
     @Test
     public void goBackTest() throws InterruptedException {
+        Looper.prepare();
         ActivityScenario.launch(ResultsActivity.class);
         GUI gui = new GUI();
         gui.backToBeginning();

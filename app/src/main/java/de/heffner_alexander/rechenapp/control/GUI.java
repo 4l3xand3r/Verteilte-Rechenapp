@@ -17,8 +17,6 @@ public class GUI implements IGUIController {
 
     private final Handler handler = new Handler(Looper.getMainLooper());
 
-    public static final Toast toast = new Toast(MainActivity.mainContext);
-
     private final Runnable loadingJump = () -> {
         Intent showResultsIntent = new Intent(LoadingActivity.loadingContext, ResultsActivity.class);
         showResultsIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

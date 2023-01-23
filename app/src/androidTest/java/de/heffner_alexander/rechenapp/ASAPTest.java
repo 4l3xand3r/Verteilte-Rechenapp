@@ -3,6 +3,8 @@ package de.heffner_alexander.rechenapp;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import android.os.Looper;
+
 import androidx.test.core.app.ActivityScenario;
 
 import org.junit.Test;
@@ -15,7 +17,6 @@ import de.heffner_alexander.rechenapp.control.Server;
 
 @RunWith(JUnit4.class)
 public class ASAPTest {
-
     @Test
     public void serverAndClientTestOne() {
         ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class);
@@ -50,9 +51,6 @@ public class ASAPTest {
         server.initializeASAP();
         client.initializeASAP();
 
-        server.initializeASAP();
-        client.initializeASAP();
-
         server.sendDataToClients(
                 "2+x",
                 1.0,
@@ -64,7 +62,7 @@ public class ASAPTest {
 
         System.out.println(Controller.getResults().size());
 
-        assertEquals(2, Controller.getResults().size(), 0.0);
+        assertEquals(1, Controller.getResults().size(), 0.0);
 
         activity.close();
         loadingActivity.close();
