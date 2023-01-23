@@ -12,113 +12,82 @@ public class Rechner implements IFormelRechner {
 
     @Override
     public boolean calculateFunction(String formula, double start, double end, double stepSize) {
-        try {
-            double dFirstNumber = 0;
-            double dSecondNumber;
-            boolean bFirstNumberSet = false;
-            String sOperation = "";
+        List<String> operators = new LinkedList<>();
+        List<Double> numbers = new LinkedList<>();
+        StringBuilder tempNumber = new StringBuilder();
 
-            for (double i = start; i <= end; i += stepSize) {
-                String tempFormula = formula.replace("x", String.valueOf(i));
-
-                char[] chars = tempFormula.toCharArray();
-                StringBuilder numberStorage = new StringBuilder();
-
-                for (char c : chars) {
-                    if (Character.isDigit(c)) {
-                        numberStorage.append(c);
-                    } else if (c == '.') {
-                        numberStorage.append(c);
-                    } else {
-                        if (!bFirstNumberSet) {
-                            dFirstNumber = Double.parseDouble(numberStorage.toString());
-                            numberStorage = new StringBuilder();
-                            bFirstNumberSet = true;
-                        } else {
-                            dSecondNumber = Double.parseDouble(numberStorage.toString());
-                            numberStorage = new StringBuilder();
-                            switch (sOperation) {
-                                case "+":
-
-                                    dFirstNumber += dSecondNumber;
-
-                                    break;
-
-                                case "-":
-
-                                    dFirstNumber -= dSecondNumber;
-
-                                    break;
-
-                                case "*":
-
-                                    dFirstNumber *= dSecondNumber;
-
-                                    break;
-
-                                case "/":
-
-                                    dFirstNumber /= dSecondNumber;
-
-                                    break;
-
-                                case "^":
-
-                                    dFirstNumber = Math.pow(dFirstNumber, dSecondNumber);
-
-                                    break;
-
-                                default:
-                                    return false;
-                            }
-                        }
-
-                        sOperation = String.valueOf(c);
-                    }
+        for (double i = start; i <= end; i += stepSize) {
+            char[] formulaChars = formula.replaceAll("x", String.valueOf(i)).toCharArray();
+            for (char c : formulaChars) {
+                if (Character.isDigit(c)) tempNumber.append(c);
+                else if (c == '.') tempNumber.append(c);
+                else {
+                    numbers.add(Double.parseDouble(tempNumber.toString()));
+                    tempNumber.delete(0, tempNumber.length());
+                    operators.add(String.valueOf(c));
                 }
-                dSecondNumber = Double.parseDouble(numberStorage.toString());
-                switch (sOperation) {
+            }
+            numbers.add(Double.parseDouble(tempNumber.toString()));
+
+            LinkedList<Integer> firstCalcIndexList = new LinkedList<>();
+            LinkedList<Integer> secondCalcIndexList = new LinkedList<>();
+
+            for (int j = 0; j < operators.size(); j++) {
+                String operator = operators.get(j);
+                if (operator.equals("*") || operator.equals("/") || operator.equals("^")) {
+                    firstCalcIndexList.add(j);
+                } else {
+                    secondCalcIndexList.add(j);
+                }
+            }
+
+            List<Integer> calculationOrder = new LinkedList<>(firstCalcIndexList);
+            calculationOrder.addAll(secondCalcIndexList);
+
+            double result = 0.0;
+
+            while (!calculationOrder.isEmpty()) {
+                int index = calculationOrder.get(0);
+                String operator = operators.get(index);
+                double numberOne = numbers.get(index);
+                double numberTwo = numbers.get(index+1);
+
+                switch (operator) {
                     case "+":
-
-                        dFirstNumber += dSecondNumber;
-
+                        result = numberOne + numberTwo;
                         break;
-
                     case "-":
-
-                        dFirstNumber -= dSecondNumber;
-
+                        result = numberOne - numberTwo;
                         break;
-
                     case "*":
-
-                        dFirstNumber *= dSecondNumber;
-
+                        result = numberOne * numberTwo;
                         break;
-
                     case "/":
-
-                        dFirstNumber /= dSecondNumber;
-
+                        result = numberOne / numberTwo;
                         break;
-
                     case "^":
-
-                        dFirstNumber = Math.pow(dFirstNumber, dSecondNumber);
-
+                        result = Math.pow(numberOne, numberTwo);
                         break;
-
                     default:
                         return false;
                 }
-                data.add(new Pair<>(i, dFirstNumber));
-                dFirstNumber = 0;
-            }
+                numbers.set(index, result);
+                numbers.remove(index+1);
 
-            return true;
-        } catch (Exception e) {
-            return false;
+                operators.remove(index);
+                calculationOrder.remove(0);
+
+                int orderIndex = 0;
+                for (int order : calculationOrder) {
+                    if (order > index) {
+                        calculationOrder.set(orderIndex, order-1);
+                    }
+                    orderIndex++;
+                }
+            }
+            data.add(new Pair<>(i, result));
         }
+        return true;
     }
 
     @Override
