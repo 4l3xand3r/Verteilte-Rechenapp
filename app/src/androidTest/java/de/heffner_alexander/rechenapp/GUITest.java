@@ -1,8 +1,16 @@
 package de.heffner_alexander.rechenapp;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertNotNull;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.intent.Intents;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,6 +56,23 @@ public class GUITest {
         Thread.sleep(100);
 
         assertNotNull(MainActivity.mainContext);
+    }
+
+    @Test
+    public void espressoTestOne() throws InterruptedException {
+        Intents.init();
+        ActivityScenario<MainActivity> mainScenario = ActivityScenario.launch(MainActivity.class);
+
+        onView(withId(R.id.main_formula_input)).perform(typeText("2*x"));
+        onView(withId(R.id.start_input)).perform(typeText("1"));
+        onView(withId(R.id.end_input)).perform(typeText("1"));
+        onView(withId(R.id.steps_input)).perform(typeText("1"));
+        onView(withId(R.id.calculate_button)).perform(click());
+
+        Thread.sleep(100);
+
+        intended(hasComponent(LoadingActivity.class.getName()));
+        mainScenario.close();
     }
 
 }
