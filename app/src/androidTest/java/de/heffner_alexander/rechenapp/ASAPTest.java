@@ -3,9 +3,8 @@ package de.heffner_alexander.rechenapp;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import android.os.Looper;
-
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.intent.Intents;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +18,7 @@ import de.heffner_alexander.rechenapp.control.Server;
 public class ASAPTest {
     @Test
     public void serverAndClientTestOne() {
+        Intents.init();
         ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class);
 
         Server server = new Server();
@@ -37,13 +37,13 @@ public class ASAPTest {
         assertNotNull(Controller.getResults());
 
         scenario.close();
+        Intents.release();
     }
 
     @Test
-    public void serverAndClientTestTwo() {
+    public void serverAndClientTestTwo() throws InterruptedException {
+        Intents.init();
         ActivityScenario<MainActivity> activity = ActivityScenario.launch(MainActivity.class);
-        ActivityScenario<LoadingActivity> loadingActivity = ActivityScenario.launch(LoadingActivity.class);
-        ActivityScenario<ResultsActivity> resultsActivity = ActivityScenario.launch(ResultsActivity.class);
 
         Server server = new Server();
         Client client = new Client();
@@ -59,14 +59,10 @@ public class ASAPTest {
         );
 
         client.sendDataToServer(Controller.getResults());
-
-        System.out.println(Controller.getResults().size());
-
-        assertEquals(1, Controller.getResults().size(), 0.0);
+        assertEquals(2, Controller.getResults().size(), 0.0);
 
         activity.close();
-        loadingActivity.close();
-        resultsActivity.close();
+        Intents.release();
     }
 
 }

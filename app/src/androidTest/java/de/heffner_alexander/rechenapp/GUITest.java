@@ -38,6 +38,7 @@ public class GUITest {
 
         intended(hasComponent(LoadingActivity.class.getName()));
         activityScenario.close();
+        Intents.release();
     }
 
     @Test
@@ -51,18 +52,22 @@ public class GUITest {
 
         intended(hasComponent(ResultsActivity.class.getName()));
         loadingScenario.close();
+        Intents.release();
     }
 
     @Test
     public void goBackTest() throws InterruptedException {
+        ActivityScenario<ResultsActivity> resultScenario = ActivityScenario.launch(ResultsActivity.class);
         Looper.prepare();
-        ActivityScenario.launch(ResultsActivity.class);
         GUI gui = new GUI();
         gui.backToBeginning();
+        System.out.println("Ran Test");
 
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         assertNotNull(MainActivity.mainContext);
+        resultScenario.close();
+        Looper.myLooper().quitSafely();
     }
 
     @Test
@@ -80,6 +85,7 @@ public class GUITest {
 
         intended(hasComponent(LoadingActivity.class.getName()));
         mainScenario.close();
+        Intents.release();
     }
 
 }

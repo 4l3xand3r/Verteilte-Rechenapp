@@ -3,7 +3,6 @@ package de.heffner_alexander.rechenapp.control;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -18,10 +17,12 @@ public class GUI implements IGUIController {
     private final Handler handler = new Handler(Looper.getMainLooper());
 
     private final Runnable loadingJump = () -> {
-        Intent showResultsIntent = new Intent(LoadingActivity.loadingContext, ResultsActivity.class);
-        showResultsIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        LoadingActivity.loadingContext.startActivity(showResultsIntent);
-        Dateisystem.context = ResultsActivity.resultContext;
+        if (LoadingActivity.loadingContext != null) {
+            Intent showResultsIntent = new Intent(LoadingActivity.loadingContext, ResultsActivity.class);
+            showResultsIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            LoadingActivity.loadingContext.startActivity(showResultsIntent);
+            Dateisystem.context = ResultsActivity.resultContext;
+        }
     };
 
     @Override
