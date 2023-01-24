@@ -27,7 +27,8 @@ public class GUITest {
 
     @Test
     public void loadingTest() throws InterruptedException {
-        ActivityScenario.launch(MainActivity.class);
+        Intents.init();
+        ActivityScenario<MainActivity> activityScenario = ActivityScenario.launch(MainActivity.class);
 
         GUI gui = new GUI();
 
@@ -35,18 +36,21 @@ public class GUITest {
 
         Thread.sleep(100);
 
-        assertNotNull(LoadingActivity.loadingContext);
+        intended(hasComponent(LoadingActivity.class.getName()));
+        activityScenario.close();
     }
 
     @Test
     public void showResultsTest() throws InterruptedException {
-        ActivityScenario.launch(LoadingActivity.class);
+        Intents.init();
+        ActivityScenario<LoadingActivity> loadingScenario = ActivityScenario.launch(LoadingActivity.class);
         GUI gui = new GUI();
         gui.showResults(new LinkedList<>());
 
         Thread.sleep(100);
 
-        assertNotNull(ResultsActivity.resultContext);
+        intended(hasComponent(ResultsActivity.class.getName()));
+        loadingScenario.close();
     }
 
     @Test

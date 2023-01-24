@@ -89,6 +89,8 @@
                   <entry key="Duration" value="90" />
                   <entry key="Lenovo_Tab_M10_FHD_Plus_API_30" value="120" />
                   <entry key="Pixel_6_API_30" value="120" />
+                  <entry key="RQ30050Y0Y" value="120" />
+                  <entry key="Sony&#10; G3221" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
@@ -128,6 +130,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Lenovo_Tab_M10_FHD_Plus_API_30" value="120" />
                   <entry key="Pixel_6_API_30" value="120" />
                   <entry key="Tests" value="360" />
                 </map>

@@ -10,7 +10,7 @@
         android:id="@+id/main_formula_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Formel eingeben"
