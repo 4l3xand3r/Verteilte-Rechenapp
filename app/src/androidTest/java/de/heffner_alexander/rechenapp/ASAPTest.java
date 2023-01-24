@@ -41,7 +41,7 @@ public class ASAPTest {
     }
 
     @Test
-    public void serverAndClientTestTwo() throws InterruptedException {
+    public void serverAndClientTestTwo() {
         Intents.init();
         ActivityScenario<MainActivity> activity = ActivityScenario.launch(MainActivity.class);
 
