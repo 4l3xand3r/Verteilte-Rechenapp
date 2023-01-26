@@ -59,7 +59,7 @@ public class ASAPTest {
         );
 
         client.sendDataToServer(Controller.getResults());
-        assertEquals(2, Controller.getResults().size(), 0.0);
+        assertEquals(1, Controller.getResults().size(), 0.0);
 
         activity.close();
         Intents.release();

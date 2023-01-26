@@ -49,13 +49,13 @@ public class Server implements IServerHost, ASAPEnvironmentChangesListener, ASAP
     @Override
     public boolean sendDataToClients(String formula, double start, double end, double stepSize) {
         if (!devices.isEmpty()) {
-            double deviceSteps = (Math.abs(start) + Math.abs(end)) / devices.size();
+            double deviceSteps = (end - start) / devices.size();
             double lastStart = start;
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             for (CharSequence device : devices) {
                 String uri = "net://" + device + "_AND_" + this.peer.getPeerID() + "_converse";
                 String message = formula + "_" + lastStart + "_"
-                        + Math.min(lastStart + deviceSteps, end) + "_" + stepSize;
+                        + Math.max(lastStart + deviceSteps, 1) + "_" + stepSize;
                 lastStart = Math.min(lastStart + deviceSteps, end);
 
                 if (device == peer.getPeerID()) {
@@ -75,6 +75,7 @@ public class Server implements IServerHost, ASAPEnvironmentChangesListener, ASAP
                         e.printStackTrace();
                     }
                 }
+                if (start == end) break;
             }
 
             if (sendDataParts == receivedDataParts) {
