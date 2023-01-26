@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "de.heffner_alexander.rechenapp"
-        minSdk 21
+        minSdk 14
         targetSdk 33
         versionCode 1
         versionName "0.1.3"

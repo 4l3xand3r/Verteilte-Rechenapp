@@ -103,8 +103,10 @@ public class Client implements IClientConn, ASAPEnvironmentChangesListener, ASAP
                     String message = ASAPSerialization.readCharSequenceParameter(bis);
 
                     if (message.startsWith(this.peer.getPeerID().toString())) {
-                        String instructions = message.replaceFirst(this.peer.getPeerID().toString(), "");
-                        Controller.startCalculations(instructions);
+                        if (message.startsWith(this.peer.getPeerID().toString())) {
+                            String instructions = message.replaceFirst(this.peer.getPeerID().toString(), "");
+                            Controller.startCalculations(instructions);
+                        }
                     }
                 } catch (ASAPException e) {
                     e.printStackTrace();

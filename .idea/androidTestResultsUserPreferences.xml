@@ -9,6 +9,8 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="HA1P0X3N" value="120" />
+                  <entry key="LENOVO&#10; Lenovo TB-X606X" value="120" />
                   <entry key="Lenovo_Tab_M10_FHD_Plus_API_30" value="120" />
                   <entry key="Pixel_6_API_30" value="120" />
                   <entry key="Tests" value="360" />
@@ -118,6 +120,8 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="HA1P0X3N" value="120" />
+                  <entry key="LENOVO&#10; Lenovo TB-X606X" value="120" />
                   <entry key="Lenovo_Tab_M10_FHD_Plus_API_30" value="120" />
                   <entry key="Pixel_5_API_30" value="120" />
                   <entry key="Tests" value="360" />
