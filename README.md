@@ -6,6 +6,7 @@ zu sein oder mit einem Zentralisierten Server verbunden zu sein.
 
 # Releases
 
+### [Verteilte Rechenapp 0.1.4 (Latest)](https://github.com/4l3xand3r/Verteilte-Rechenapp/releases/tag/v0.1.4)
 ### [Verteilte Rechenapp 0.1.3](https://github.com/4l3xand3r/Verteilte-Rechenapp/releases/tag/v0.1.3)
 ### [Verteilte Rechenapp 0.1.2](https://github.com/4l3xand3r/Verteilte-Rechenapp/releases/tag/v0.1.2)
 ### [Verteilte Rechenapp 0.1.1](https://github.com/4l3xand3r/Verteilte-Rechenapp/releases/tag/v0.1.1)
